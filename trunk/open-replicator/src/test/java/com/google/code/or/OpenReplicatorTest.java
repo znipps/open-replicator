@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 
 import com.google.code.or.binlog.BinlogEventListener;
 import com.google.code.or.binlog.BinlogEventV4;
-import com.google.code.or.logging.Log4jInitializer;
 
 public class OpenReplicatorTest {
 	//
@@ -20,17 +19,14 @@ public class OpenReplicatorTest {
 	 */
 	public static void main(String args[]) throws Exception {
 		//
-		Log4jInitializer.initialize();
-		
-		//
 		final OpenReplicator or = new OpenReplicator();
-		or.setUser("root");
-		or.setPassword("123456");
-		or.setHost("localhost");
+		or.setUser("nextop");
+		or.setPassword("nextop");
+		or.setHost("192.168.1.216");
 		or.setPort(3306);
 		or.setServerId(6789);
 		or.setBinlogPosition(4);
-		or.setBinlogFileName("mysql_bin.000001");
+		or.setBinlogFileName("mysql-bin.000001");
 		or.setBinlogEventListener(new BinlogEventListener() {
 		    public void onEvents(BinlogEventV4 event) {
 		    	LOGGER.info("{}", event);

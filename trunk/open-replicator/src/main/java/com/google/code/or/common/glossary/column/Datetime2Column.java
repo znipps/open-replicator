@@ -14,24 +14,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.google.code.or.binlog.impl.variable.user;
+package com.google.code.or.common.glossary.column;
 
-import com.google.code.or.binlog.UserVariable;
-import com.google.code.or.common.util.ToStringBuilder;
+import com.google.code.or.common.glossary.Column;
 
 /**
  * 
  * @author Jingqi Xu
  */
-public abstract class AbstractUserVariable implements UserVariable {
+public final class Datetime2Column implements Column {
 	//
-	protected final int type;
+	private static final long serialVersionUID = 6444968242222031354L;
+	
+	//
+	private final java.util.Date value;
 	
 	/**
 	 * 
 	 */
-	public AbstractUserVariable(int type) {
-		this.type = type;
+	private Datetime2Column(java.util.Date value) {
+		this.value = value;
 	}
 	
 	/**
@@ -39,13 +41,20 @@ public abstract class AbstractUserVariable implements UserVariable {
 	 */
 	@Override
 	public String toString() {
-		return new ToStringBuilder(this).toString();
+		return String.valueOf(this.value);
+	}
+
+	/**
+	 * 
+	 */
+	public java.util.Date getValue() {
+		return this.value;
 	}
 	
 	/**
 	 * 
 	 */
-	public int getType() {
-		return type;
+	public static final Datetime2Column valueOf(java.util.Date value) {
+		return new Datetime2Column(value);
 	}
 }

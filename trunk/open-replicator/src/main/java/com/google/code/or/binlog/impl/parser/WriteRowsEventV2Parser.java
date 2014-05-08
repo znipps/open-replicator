@@ -60,7 +60,7 @@ public class WriteRowsEventV2Parser extends AbstractRowEventParser {
 		event.setExtraInfoLength(is.readInt(2));
 		if(event.getExtraInfoLength() > 2) event.setExtraInfo(is.readBytes(event.getExtraInfoLength() - 2));
 		event.setColumnCount(is.readUnsignedLong()); 
-		event.setUsedColumns(is.readBit(event.getColumnCount().intValue(), true));
+		event.setUsedColumns(is.readBit(event.getColumnCount().intValue()));
 		event.setRows(parseRows(is, tme, event));
 		context.getEventListener().onEvents(event);
 	}

@@ -18,10 +18,8 @@ package com.google.code.or.net.impl.packet;
 
 import java.io.IOException;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
-
 import com.google.code.or.common.glossary.column.StringColumn;
+import com.google.code.or.common.util.ToStringBuilder;
 import com.google.code.or.io.XInputStream;
 import com.google.code.or.io.util.XDeserializer;
 import com.google.code.or.io.util.XSerializer;
@@ -50,7 +48,7 @@ public class ErrorPacket extends AbstractPacket {
 	 */
 	@Override
 	public String toString() {
-		return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
+		return new ToStringBuilder(this)
 		.append("packetMarker", packetMarker)
 		.append("errorCode", errorCode)
 		.append("slash", slash)

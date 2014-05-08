@@ -18,7 +18,6 @@ package com.google.code.or.binlog.impl;
 
 import java.util.concurrent.TimeUnit;
 
-import org.apache.commons.lang.exception.NestableRuntimeException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -98,12 +97,12 @@ public class ReplicationBasedBinlogParser extends AbstractBinlogParser {
 				if(packetMarker != OKPacket.PACKET_MARKER) { // 0x00
 					if((byte)packetMarker == ErrorPacket.PACKET_MARKER) {
 						final ErrorPacket packet = ErrorPacket.valueOf(packetLength, packetSequence, packetMarker, is);
-						throw new NestableRuntimeException(packet.toString());
+						throw new RuntimeException(packet.toString());
 					} else if((byte)packetMarker == EOFPacket.PACKET_MARKER) {
 						final EOFPacket packet = EOFPacket.valueOf(packetLength, packetSequence, packetMarker, is);
-						throw new NestableRuntimeException(packet.toString());
+						throw new RuntimeException(packet.toString());
 					} else {
-						throw new NestableRuntimeException("assertion failed, invalid packet marker: " + packetMarker);
+						throw new RuntimeException("assertion failed, invalid packet marker: " + packetMarker);
 					}
 				}
 				
@@ -131,7 +130,7 @@ public class ReplicationBasedBinlogParser extends AbstractBinlogParser {
 				
 				// Ensure the packet boundary
 				if(is.available() != 0) {
-					throw new NestableRuntimeException("assertion failed, available: " + is.available() + ", event type: " + header.getEventType());
+					throw new RuntimeException("assertion failed, available: " + is.available() + ", event type: " + header.getEventType());
 				}
 			} finally {
 				is.setReadLimit(0);

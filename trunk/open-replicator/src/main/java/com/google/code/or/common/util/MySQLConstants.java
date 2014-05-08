@@ -25,6 +25,8 @@ public final class MySQLConstants {
 	public static final byte[] BINLOG_MAGIC = new byte[]{(byte)0xfe, (byte)0x62, (byte)0x69, (byte)0x6e};
 	
 	//
+	public static final int MAX_TIME_WIDTH = 10;
+	public static final int MAX_DATETIME_WIDTH = 19;
 	public static final int MAX_PACKET_LENGTH = (256 * 256 * 256 - 1);
 	
 	// Client capabilities
@@ -128,6 +130,9 @@ public final class MySQLConstants {
 	public static final int TYPE_NEWDATE = 14;
 	public static final int TYPE_VARCHAR = 15;
 	public static final int TYPE_BIT = 16;
+	public static final int TYPE_TIMESTAMP2 = 17;
+	public static final int TYPE_DATETIME2 = 18;
+	public static final int TYPE_TIME2 = 19;
 	public static final int TYPE_NEWDECIMAL = 246;
 	public static final int TYPE_ENUM = 247;
 	public static final int TYPE_SET = 248;
